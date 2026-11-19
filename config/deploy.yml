@@ -40,7 +40,9 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - HOBBIT_COMPASS_DATABASE_PASSWORD
   clear:
+    DB_HOST: hobbit_compass-db
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
     SOLID_QUEUE_IN_PUMA: true
@@ -91,6 +93,20 @@ builder:
 #   user: app
 
 # Use accessory services (secrets come from .kamal/secrets).
+accessories:
+  db:
+    image: postgres:18
+    host: 192.168.0.1
+    port: "127.0.0.1:5432:5432"
+    env:
+      clear:
+        POSTGRES_USER: hobbit_compass
+        POSTGRES_DB: hobbit_compass_production
+      secret:
+        - POSTGRES_PASSWORD:HOBBIT_COMPASS_DATABASE_PASSWORD
+    directories:
+      - data:/var/lib/postgresql
+
 # accessories:
 #   db:
 #     image: mysql:8.0

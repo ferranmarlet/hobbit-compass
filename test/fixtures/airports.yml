@@ -1,0 +1,13 @@
+madrid:
+  iata_code: MAD
+  name: Adolfo Suárez Madrid–Barajas Airport
+  city: Madrid
+  country_code: ES
+  time_zone: Europe/Madrid
+
+new_york_jfk:
+  iata_code: JFK
+  name: John F. Kennedy International Airport
+  city: New York
+  country_code: US
+  time_zone: America/New_York

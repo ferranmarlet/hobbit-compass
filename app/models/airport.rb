@@ -1,4 +1,9 @@
 class Airport < ApplicationRecord
+  has_many :departing_flights, class_name: "Flight", foreign_key: :origin_id,
+                               inverse_of: :origin, dependent: :restrict_with_error
+  has_many :arriving_flights, class_name: "Flight", foreign_key: :destination_id,
+                              inverse_of: :destination, dependent: :restrict_with_error
+
   normalizes :iata_code, :country_code, with: ->(code) { code.strip.upcase }
 
   validates :iata_code, presence: true, format: { with: /\A[A-Z]{3}\z/ }, uniqueness: true

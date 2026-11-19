@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_19_142731) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_19_153712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,4 +24,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_19_142731) do
     t.datetime "updated_at", null: false
     t.index ["iata_code"], name: "index_airports_on_iata_code", unique: true
   end
+
+  create_table "flights", force: :cascade do |t|
+    t.string "flight_number", null: false
+    t.bigint "origin_id", null: false
+    t.bigint "destination_id", null: false
+    t.datetime "departure_at", null: false
+    t.datetime "arrival_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_flights_on_destination_id"
+    t.index ["origin_id"], name: "index_flights_on_origin_id"
+    t.check_constraint "arrival_at > departure_at", name: "flights_arrival_after_departure"
+    t.check_constraint "origin_id <> destination_id", name: "flights_origin_differs_from_destination"
+  end
+
+  add_foreign_key "flights", "airports", column: "destination_id"
+  add_foreign_key "flights", "airports", column: "origin_id"
 end

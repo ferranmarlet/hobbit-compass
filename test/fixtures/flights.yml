@@ -1,0 +1,6 @@
+madrid_to_new_york:
+  flight_number: IB6251
+  origin: madrid
+  destination: new_york_jfk
+  departure_at: 2026-12-01 11:00:00 UTC
+  arrival_at: 2026-12-01 19:30:00 UTC

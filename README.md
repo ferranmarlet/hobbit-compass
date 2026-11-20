@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project to aggregate flight data and automatically plan trips with the help of an AI agent.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Local development
+Start the local database
+```sh
+docker compose up -d db
+bin/setup        # or bin/dev if the DBs already exist
+```
